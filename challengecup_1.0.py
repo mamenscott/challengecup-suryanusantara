@@ -3,7 +3,7 @@ import random
 import math
 import pandas as pd
 
-st.set_page_config(page_title="Swiss Chess Tournament", layout="centered")
+st.set_page_config(page_title="Challenge Cup Tournament", layout="centered")
 
 # ================= CONFIG =================
 BUCHHOLZ_SCALE = 0.1  # 8.0 → 0.8
@@ -57,7 +57,7 @@ if "pairs" not in st.session_state:
     st.session_state.pairs = []
 
 # ================= UI =================
-st.title("♟️ Swiss Chess Tournament")
+st.title("♟️ Challenge Cup Tournament Surya Nusantara")
 
 st.header("Setup Turnamen")
 n = st.number_input("Jumlah peserta", min_value=2, step=1)
