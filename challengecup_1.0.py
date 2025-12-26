@@ -227,10 +227,26 @@ elif menu == "Ronde":
 # ================= KLASMEN =================
 elif menu == "Klasemen":
     st.header("🏆 Klasemen Challange Cup Surya Nusantara")
+
+    # Hitung tie-break
     for p in st.session_state.players:
-        p.buchholz = round(buchholz(p, st.session_state.players)*BUCHHOLZ_SCALE,2)
-    data = [{"Nama":p.name,"Skor":p.score,"Tie-Break":p.buchholz} for p in sorted(st.session_state.players, key=lambda x:(-x.score,-x.buchholz))]
-    st.dataframe(pd.DataFrame(data), use_container_width=True)
+        p.buchholz = round(buchholz(p, st.session_state.players) * BUCHHOLZ_SCALE, 2)
+
+    # Urutkan & beri ranking mulai dari 1
+    rows = []
+    rank = 1
+    for p in sorted(st.session_state.players, key=lambda x: (-x.score, -x.buchholz)):
+        rows.append({
+            "Rank": rank,
+            "Nama": p.name,
+            "Skor": round(p.score, 1),
+            "Tie-Break": round(p.buchholz, 2)
+        })
+        rank += 1
+
+    df = pd.DataFrame(rows)
+
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 # ================= PERATURAN =================
 
